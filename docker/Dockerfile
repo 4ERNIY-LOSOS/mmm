@@ -7,6 +7,7 @@ WORKDIR /root
 
 RUN  apt update \
   && apt install -y \
+    supervisor \
     unzip \
     zlib1g-dev \
     libpng-dev \
@@ -21,3 +22,7 @@ RUN  apt update \
   && docker-php-ext-install pdo_mysql \
   && docker-php-ext-install gd \
   && php /src/change-entrypoint.php
+
+COPY supervisor.conf /etc/supervisor/conf.d/supervisord.conf
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
