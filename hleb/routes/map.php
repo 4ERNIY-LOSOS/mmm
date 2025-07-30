@@ -12,4 +12,8 @@
  * Так как карта маршрутов хранится в кеше, здесь не применимы динамически изменяющиеся данные.
  */
 
+// Главная страница
 Route::get('/', view('default'))->name('homepage');
+
+// Telegram Bot Webhook
+Route::post('/telegram/webhook', 'TelegramWebhookController@handle')->name('telegram.webhook');
